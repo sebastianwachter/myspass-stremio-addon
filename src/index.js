@@ -1,6 +1,6 @@
-import pkg from 'stremio-addon-sdk'
+import sdk from 'stremio-addon-sdk'
 
 import addonInterface from './addon.js'
 
-const { serveHTTP } = pkg
+const { serveHTTP } = sdk
 serveHTTP(addonInterface, { port: 7000 })
