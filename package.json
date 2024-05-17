@@ -1,0 +1,32 @@
+{
+  "name": "myspass-stremio-addon",
+  "version": "0.0.0",
+  "description": "MySpass addon for stremio",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "keywords": [
+    "stremio",
+    "stremio-addons",
+    "addons",
+    "myspass"
+  ],
+  "author": {
+    "name": "Sebastian Wachter",
+    "email": "sebastian.wachter@online.de"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sebastianwachter/myspass-stremio-addon"
+  },
+  "bugs": {
+    "url": "https://github.com/sebastianwachter/myspass-stremio-addon/issues"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "playwright": "^1.44.0",
+    "stremio-addon-sdk": "^1.6.10"
+  }
+}
