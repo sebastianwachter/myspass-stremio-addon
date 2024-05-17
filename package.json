@@ -1,6 +1,6 @@
 {
   "name": "myspass-stremio-addon",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "MySpass addon for stremio",
   "main": "src/server.js",
   "type": "module",
