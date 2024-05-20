@@ -56,14 +56,14 @@ export const getStreamUrl = async (id) => {
   chromium.setHeadlessMode = true
   chromium.setGraphicsMode = false
   await chromium.font('https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf')
+  const executablePath = await chromium.executablePath(process.env.CHROMIUM_PACK_URL)
 
   const browser = await puppeteer.launch({
     args: chromium.args,
     defaultViewport: chromium.defaultViewport,
-    executablePath: await chromium.executablePath(process.env.CHROMIUM_PACK_URL),
+    executablePath,
     headless: chromium.headless
   })
-  console.warn(browser)
   const context = await browser.newContext()
   const page = await context.newPage()
   await page.goto(pageUrl)
