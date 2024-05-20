@@ -63,7 +63,6 @@ export const getStreamUrl = async (id) => {
   await page.goto(pageUrl)
   const url = await page.locator('video').getAttribute('src')
   const title = (await page.locator('h2.title').first().innerText()).split('\n')[0]
-  await browser.close()
   return {
     url,
     title,
