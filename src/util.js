@@ -56,7 +56,7 @@ export const getStreamUrl = async (id) => {
   const browser = await playwright.launch({
     args: chromium.args,
     executablePath: await chromium.executablePath(process.env.CHROMIUM_PACK_URL),
-    headless: chromium.headless
+    headless: true
   })
   const context = await browser.newContext();
   const page = await context.newPage()
