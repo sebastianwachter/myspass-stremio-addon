@@ -4,9 +4,6 @@
   "description": "MySpass addon for stremio",
   "main": "src/server.js",
   "type": "module",
-  "scripts": {
-    "dev": "vercel dev"
-  },
   "keywords": [
     "stremio",
     "stremio-addons",
