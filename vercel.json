@@ -6,5 +6,10 @@
       "destination": "/api"
     }
   ],
-  "installCommand": "npm i && npx playwright install"
+  "functions": {
+    "api/**/*": {
+      "maxDuration": 120
+    }
+  },
+  "installCommand": "npm install"
 }

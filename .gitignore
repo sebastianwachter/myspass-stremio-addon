@@ -131,3 +131,4 @@ dist
 /blob-report/
 /playwright/.cache/
 .vercel
+.env.development.local

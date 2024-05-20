@@ -1,4 +1,5 @@
-import playwright from 'playwright'
+import chromium from '@sparticuz/chromium-min'
+import puppeteer from 'puppeteer-core'
 
 const idToPageMapping = {
   'tt0428167:1:1': 'https://www.myspass.de/shows/tvshows/stromberg/Der-Parkplatz--/867/',
@@ -52,15 +53,23 @@ const idToPageMapping = {
 export const getStreamUrl = async (id) => {
   const pageUrl = idToPageMapping[id]
 
-  const browser = await playwright.chromium.launch()
+  chromium.setHeadlessMode = true
+  chromium.setGraphicsMode = true
+  await chromium.font('https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf')
+
+  const browser = await puppeteer.launch({
+    args: chromium.args,
+    defaultViewport: chromium.defaultViewport,
+    executablePath: await chromium.executablePath(process.env.CHROMIUM_PACK_URL),
+    headless: chromium.headless
+  })
   const context = await browser.newContext()
   const page = await context.newPage()
   await page.goto(pageUrl)
-  const url = await page.locator('video').getAttribute('src')
-  const title = (await page.locator('h2.title').first().innerText()).split('\n')[0]
+  const url = await page.$$eval('video', video => video.src)
+  await browser.close()
   return {
     url,
-    title,
     name: 'MySpass Addon'
   }
 }
