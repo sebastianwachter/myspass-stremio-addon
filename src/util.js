@@ -53,8 +53,8 @@ const idToPageMapping = {
 export const getStreamUrl = async (id) => {
   const pageUrl = idToPageMapping[id]
 
-  chromium.setHeadlessMode = true
-  chromium.setGraphicsMode = false
+  chromium.setHeadlessMode = 'shell'
+  chromium.setGraphicsMode = true
   await chromium.font('https://raw.githack.com/googlei18n/noto-emoji/master/fonts/NotoColorEmoji.ttf')
   const executablePath = await chromium.executablePath(process.env.CHROMIUM_PACK_URL)
 
@@ -64,6 +64,7 @@ export const getStreamUrl = async (id) => {
     executablePath,
     headless: chromium.headless
   })
+  console.log(browser)
   const context = await browser.newContext()
   const page = await context.newPage()
   await page.goto(pageUrl)
