@@ -1,33 +1,36 @@
 import { addonBuilder } from 'stremio-addon-sdk'
 
 import pkg from '../package.json' assert { type: 'json' }
-import { getStreamUrl } from './util.js'
+import { imdbMyspassMapping } from './imdb-myspass-mapping.js'
 
 const manifest = {
   id: 'de.myspass.stremio',
   version: pkg.version,
-  name: 'MySpass Addon',
+  name: 'MySpass',
   description: 'MySpass addon for stremio',
   resources: ['stream'],
   types: ['series'],
   catalogs: []
 }
 
-// eslint-disable-next-line new-cap
 const builder = new addonBuilder(manifest)
 
-builder.defineStreamHandler((args) => {
-  return new Promise((resolve, reject) => {
-    if (!args.id || args.id.split(':')[0] !== 'tt0428167') reject(new Error('Invalid Catalog Request'))
+const getPlaylistUrl = episodeId => {
+  return `https://1020993654.rsc.cdn77.org/Stromberg/${episodeId}/1080-HLS/${episodeId}_1080-HLS_.m3u8`
+}
 
-    getStreamUrl(args.id)
-      .then((res) => {
-        if (!res || Object.keys(res).length <= 0) reject(new Error('Received Invalid Catalog Data'))
-        resolve({ streams: [res] })
-      })
-      .catch((err) => {
-        reject(err)
-      })
+builder.defineStreamHandler(async args => {
+  if (!args.id || args.id.split(':')[0] !== 'tt0428167') reject(new Error('Invalid Catalog Request'))
+
+  return new Promise((resolve, reject) => {
+    const episodeId = imdbMyspassMapping[args.id]
+    if (!episodeId) reject(new Error('Received Invalid Catalog Data'))
+    resolve({
+      streams: [{
+        url: getPlaylistUrl(episodeId),
+        title: '1080p - HLS',
+      }]
+    })
   })
 })
 
