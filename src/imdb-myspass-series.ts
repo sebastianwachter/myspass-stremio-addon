@@ -1,4 +1,4 @@
-export const imdbMyspassMapping = {
+export const imdbMyspassMapping: Record<string, number> = {
   // Stromberg Season 1
   'tt0428167:1:1': 867,
   'tt0428167:1:2': 866,
@@ -28,7 +28,7 @@ export const imdbMyspassMapping = {
   'tt0428167:3:6': 820,
   'tt0428167:3:7': 822,
   'tt0428167:3:8': 821,
-  //Stromberg Season 4
+  // Stromberg Season 4
   'tt0428167:4:1': 1149,
   'tt0428167:4:2': 1150,
   'tt0428167:4:3': 1210,
