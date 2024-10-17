@@ -1,11 +1,11 @@
 import { addonBuilder as AddonBuilder, Manifest } from 'stremio-addon-sdk'
 
-import { version } from '../package.json' with { type: 'json' }
+import pkg from '../package.json' with { type: 'json' }
 import { imdbMyspassMapping } from './imdb-myspass-series.js'
 
 const manifest: Manifest = {
   id: 'de.myspass.stremio',
-  version,
+  version: pkg.version,
   name: 'MySpass',
   description: 'MySpass addon for stremio',
   resources: ['stream'],
