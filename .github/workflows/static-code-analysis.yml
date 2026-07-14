@@ -7,7 +7,7 @@ jobs:
     name: 'Static Code Analysis - Lint'
     steps:
       - uses: 'actions/checkout@v7'
-      - uses: 'actions/setup-node@v6'
+      - uses: 'actions/setup-node@v7'
         with:
           node-version: 20
           cache: 'npm'
@@ -19,7 +19,7 @@ jobs:
     name: 'Static Code Analysis - Typescript'
     steps:
       - uses: 'actions/checkout@v7'
-      - uses: 'actions/setup-node@v6'
+      - uses: 'actions/setup-node@v7'
         with:
           node-version: 20
           cache: 'npm'
